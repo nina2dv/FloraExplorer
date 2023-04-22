@@ -78,7 +78,7 @@ except:
     st.session_state['plant_code'] = None
 
 with st.expander("Introduced vs Invasive species?"):
-    st.markdown("Introduced species are plants, animals and micro-organisms that have been accidentally or deliberately introduced into areas beyond their native range.\nInvasive species are introduced species whose introduction or spread negatively impacts the environment, economy, and/or society including human health.")
+    st.write("Introduced species are plants, animals and micro-organisms that have been accidentally or deliberately introduced into areas beyond their native range.\nInvasive species are introduced species whose introduction or spread negatively impacts the environment, economy, and/or society including human health.")
 
 with st.expander("What should I do if I think I have found an invasive plant"):
     st.markdown("""
