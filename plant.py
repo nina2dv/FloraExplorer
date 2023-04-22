@@ -100,12 +100,12 @@ with st.sidebar:
         
         https://www.invasivespeciesinfo.gov/subject/reporting
         """)
-        with st.expander("Contributing to PlantNet"):
-            st.markdown("""
-            PlantNet is a citizen science project. 
-            
-            You can contribute by sharing your plant photos here: https://identify.plantnet.org/
-            """)
+    with st.expander("Contributing to PlantNet"):
+        st.markdown("""
+        PlantNet is a citizen science project. 
+        
+        You can contribute by sharing your plant photos here: https://identify.plantnet.org/
+        """)
 
 if st.session_state['plant_code'] is not None:
     components.iframe(
