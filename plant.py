@@ -102,7 +102,7 @@ with st.sidebar:
         """)
     with st.expander("Contributing to PlantNet"):
         st.markdown("""
-        PlantNet is a citizen science project. 
+        PlantNet is a citizen science project that plays a huge role in identifying plants. 
         
         You can contribute by sharing your plant photos here: https://identify.plantnet.org/
         """)
