@@ -77,27 +77,29 @@ try:
 except:
     st.session_state['plant_code'] = None
 
-with st.expander("Introduced vs Invasive species?"):
-    st.write("Introduced species are plants, animals and micro-organisms that have been accidentally or deliberately introduced into areas beyond their native range.")
-    st.write("Invasive species are introduced species whose introduction or spread negatively impacts the environment, economy, and/or society including human health.")
-
-with st.expander("What should I do if I think I have found an invasive plant"):
-    st.markdown("""
-    You can report it on EDDMapS: https://www.eddmaps.org/
+with st.sidebar:
     
-    When reporting, include:
-    - Location of the invasive species
-    - Name of the invasive species
-    - Date you saw the invasive species
-    - Your name and contact information
-    - Photographs of the invasive species
+    with st.expander("Introduced vs Invasive species?"):
+        st.write("Introduced species are plants, animals and micro-organisms that have been accidentally or deliberately introduced into areas beyond their native range.")
+        st.write("Invasive species are introduced species whose introduction or spread negatively impacts the environment, economy, and/or society including human health.")
     
-    For more resources, check out:
-    
-    https://www.invasivespeciescentre.ca/report-a-sighting/
-    
-    https://www.invasivespeciesinfo.gov/subject/reporting
-    """)
+    with st.expander("What should I do if I think I have found an invasive plant"):
+        st.markdown("""
+        You can report it on EDDMapS: https://www.eddmaps.org/
+        
+        When reporting, include:
+        - Location of the invasive species
+        - Name of the invasive species
+        - Date you saw the invasive species
+        - Your name and contact information
+        - Photographs of the invasive species
+        
+        For more resources, check out:
+        
+        https://www.invasivespeciescentre.ca/report-a-sighting/
+        
+        https://www.invasivespeciesinfo.gov/subject/reporting
+        """)
 
 if st.session_state['plant_code'] is not None:
     components.iframe(
