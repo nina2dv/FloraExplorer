@@ -12,7 +12,6 @@ API_KEY = st.secrets['plant']
 PROJECT = "all"
 api_endpoint = f"https://my-api.plantnet.org/v2/identify/{PROJECT}?api-key={API_KEY}"
 
-
 df = pd.read_csv('plant_code.csv', delimiter=",")
 df['Scientific Name with Author'] = df['Scientific Name with Author'].str.replace(' ', '')
 # st.dataframe(data=df)
@@ -57,8 +56,6 @@ if uploaded_file is not None:
     response = s.send(prepared)
     json_result = json.loads(response.text)
 
-    # pprint(response.status_code)
-    # pprint(json_result)
     try:
         st.session_state['top_name'] = json_result['results'][0]['species']['commonNames'][0]
         st.session_state['sci_name'] = json_result['results'][0]['species']['scientificName']
@@ -74,21 +71,29 @@ if uploaded_file is not None:
                 st.write(f"Family: {i['species']['family']['scientificName']}")
                 st.write(f"Genus: {i['species']['genus']['scientificName']}")
                 st.markdown("""---""")
-# st.session_state['top_name']
-# st.session_state['sci_name']
-
 try:
     # st.session_state['plant_code'] = df.iloc[df.index[df['Common Name'] == st.session_state['top_name'].lower()].tolist()[0]]['Symbol']
     st.session_state['plant_code'] = df.iloc[df.index[df['Scientific Name with Author'] == st.session_state['sci_name'].replace(" ", '')].tolist()[0]]['Symbol']
-    # st.write(st.session_state['plant_code'])
 except:
     st.session_state['plant_code'] = None
 
-# st.text(df[df['Common Name'] == st.session_state['top_name'].lower()].Symbol)
-
-# st.write(api.plants_by("distributions", 286))
-with st.expander("What are introduced species?"):
+with st.expander("Introduced vs Invasive species?"):
     st.info("Introduced species are plants, animals and micro-organisms that have been accidentally or deliberately introduced into areas beyond their native range. Invasive species are introduced species whose introduction or spread negatively impacts the environment, economy, and/or society including human health.")
+
+with st.expander("What should I do if I think I have found an invasive plant"):
+    st.info("""You can report it on EDDMapS: https://www.eddmaps.org/
+    When reporting, include:
+    - Location of the invasive species
+    - Name of the invasive species
+    - Date you saw the invasive species
+    - Your name and contact information
+    - Photographs of the invasive species
+    
+    For more resources, check out:
+    https://www.invasivespeciescentre.ca/report-a-sighting/
+    https://www.invasivespeciesinfo.gov/subject/reporting
+    """)
+
 if st.session_state['plant_code'] is not None:
     components.iframe(
         f"https://plants.usda.gov/home/plantProfile?symbol={st.session_state['plant_code']}",
@@ -97,11 +102,6 @@ if st.session_state['plant_code'] is not None:
 #if "run" in st.session_state:
     # components.iframe("https://maps.eddmaps.org/google/eradication.cfm?notitle&&observationdatestart=1/1/2020&eradicationstatus=1,2,3&country=260&records=mappings&lat=49.7703&lng=-96.8116&zoom=5", width=1300, height=600, scrolling=False)
 
-# components.iframe("https://maps.eddmaps.org/google/eradication.cfm?notitle&&observationdatestart=1/1/2020&country=260&records=mappings&eradicationstatus=1&lat=49.7703&lng=-96.8116&zoom=5", width=1350, height=600, scrolling=False)
-# image_path_1 = 'data/dahlia-shutterstock.jpeg'
-# image_data_1 = open(image_path_1, 'rb')
-# image_path_2 = "../data/image_2.jpeg"
-# image_data_2 = open(image_path_2, 'rb')
 
 
 
